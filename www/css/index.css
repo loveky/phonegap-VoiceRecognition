@@ -43,3 +43,7 @@
 .hint p.assertive {
   color: #ef4e3a;
 }
+
+.description p {
+  white-space: normal;
+}
