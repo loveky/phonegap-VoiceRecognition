@@ -1,0 +1,45 @@
+.content {
+  top: 44px;
+  bottom: 44px;
+}
+
+.hint {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -150px;
+  background: black;
+  z-index: 100;
+  border-radius: 10px;
+  opacity: 0.7;
+}
+
+.hint i {
+  font-size: 100px;
+  color: #FFFFFF;
+  position: absolute;
+  top: 30px;
+}
+
+.hint i.recording {
+  left: 70px;
+}
+
+.hint i.offline {
+  left: 55px;
+}
+
+.hint p {
+  position: absolute;
+  top: 150px;
+  color: #FFFFFF;
+  text-align: center;
+  width: 100%;
+}
+
+.hint p.assertive {
+  color: #ef4e3a;
+}

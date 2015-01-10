@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="voiceRecognition">
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <link rel="stylesheet" type="text/css" href="css/ionic.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <title>Voice Recognition</title>
+</head>
+<body>
+  <ion-side-menus>
+    <ion-side-menu-content ng-controller="homeController as home">
+      <div class="bar bar-header bar-stable">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <h1 class="title">Voice Recognition</h1>
+      </div>
+      <ion-content class="content">
+        <div ng-repeat="voice in home.history" class="card">
+          <div class="item item-text-wrap">
+            {{voice.result[0]}}
+          </div>
+        </div>
+      </ion-content>
+      <div class="bar bar-footer bar-stable">
+        <button ng-disabled="!home.ready || home.offline"
+                on-hold="home.startRecord()"
+                on-release="home.stopRecord()"
+                on-drag-up="home.cancelRecord()"
+                class="col col-80 col-offset-10 button button-large">
+          {{home.buttonText}}
+        </button>
+      </div>
+
+      <div ng-show="home.showHint" class="hint">
+        <i class="icon ion-mic-a recording"></i>
+        <p ng-class="{'assertive': home.recordCanceled}">{{home.hintText}}</p>
+      </div>
+
+      <div ng-show="home.offline" class="hint">
+        <i class="icon ion-sad offline"></i>
+        <p>断网了亲，快找个网络吧！</p>
+      </div>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+      <div class="list">
+        <div class="item item-divider">
+          选择语言
+        </div>
+        <div ng-controller="languageSelectController as languageSelect" class="list">
+          <ion-radio ng-model="languageSelect.setting.lan" ng-value="'zh'">普通话</ion-radio>
+          <ion-radio ng-model="languageSelect.setting.lan" ng-value="'ct'">粤语</ion-radio>
+          <ion-radio ng-model="languageSelect.setting.lan" ng-value="'en'">英语</ion-radio>
+        </div>
+        <div class="item item-divider">
+          关于Voice Recognition
+        </div>
+        <div class="item">
+          <p>一二三四五</p>
+          <p>上山打老虎</p>
+          <p>老虎没打到</p>
+          <p>打到小松鼠</p>
+        </div>
+      </div>
+    </ion-side-menu>
+  </ion-side-menus>
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/ionic.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
