@@ -6,3 +6,4 @@
 - 粤语
 - 英语
 
+![Screenshoot](https://raw.githubusercontent.com/loveky/phonegap-VoiceRecognition/master/www/img/screenshoot.gif)
