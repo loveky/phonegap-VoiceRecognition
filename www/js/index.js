@@ -6,9 +6,8 @@
     .controller("languageSelectController", languageSelectController)
     .value("Setting", {
       lan: "zh"
-    }).
-    directive("networkStatusIndicator", networkStatusIndicatorDirective)
-    .controller("networkStatusIndicatorController", networkStatusIndicatorController);
+    })
+    .directive("openInAppBrowser", openInAppBrowserDirective);
 
   homeController.$inject = ["$scope", "$window", "$document", "$http", "$ionicPopover", "$ionicLoading", "Setting"];
   function homeController ($scope, $window, $document, $http, $ionicPopover, $ionicLoading, Setting) {
@@ -122,5 +121,22 @@
   function languageSelectController ($scope, Setting) {
     var vm = this;
     vm.setting = Setting;
+  }
+
+  openInAppBrowserDirective.$inject = ["$window"];
+  function openInAppBrowserDirective ($window) {
+    return {
+      restric: "A",
+      link: function (scope, iElement, iAttrs) {
+        iElement.on("click", openInAppBrowser);
+
+        function openInAppBrowser (event) {
+          if (angular.isUndefined(iAttrs.href)) {
+            $window.open(iAttrs.href, '_system', 'location=yes');
+            event.preventDefault();
+          }
+        }
+      }
+    };
   }
 })(window, window.angular)
