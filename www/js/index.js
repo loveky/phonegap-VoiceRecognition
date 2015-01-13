@@ -121,12 +121,6 @@
     vm.selectLanguage = function ($event) {
       vm.selectLanguagePopover.show($event);
     };
-
-    $ionicPopover.fromTemplateUrl('templates/select_language_popover.html', {
-      scope: $scope,
-    }).then(function(popover) {
-      vm.selectLanguagePopover = popover;
-    });
   }
 
   languageSelectController.$inject = ["$scope", "Setting"];
