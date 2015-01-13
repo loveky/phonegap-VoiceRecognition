@@ -9,11 +9,14 @@
     })
     .directive("openInAppBrowser", openInAppBrowserDirective);
 
-  homeController.$inject = ["$scope", "$window", "$document", "$http", "$ionicPopover", "$ionicLoading", "Setting"];
-  function homeController ($scope, $window, $document, $http, $ionicPopover, $ionicLoading, Setting) {
+  homeController.$inject = ["$scope", "$window", "$document", "$http", "$ionicPopover", "$ionicLoading", "Setting", "$timeout"];
+  function homeController ($scope, $window, $document, $http, $ionicPopover, $ionicLoading, Setting, $timeout) {
     var vm = this;
     var file;
     var record;
+    var maxVoiceLengthInSeconds = 55;
+    var exceedMaxVoiceLength = false;
+    var voiceLengthTimeout = null;
     vm.ready = false;
 
     vm.history = [];
@@ -92,10 +95,19 @@
       vm.buttonText = "松开 结束";
       vm.hintText = "向上滑动 取消识别";
       vm.showHint = true;
+      voiceLengthTimeout = $timeout(function () {
+        vm.stopRecord();
+        exceedMaxVoiceLength = true;
+      }, maxVoiceLengthInSeconds * 1000);
     };
 
     vm.stopRecord = function () {
-      // vm.recordCanceled = false;
+      if (exceedMaxVoiceLength) {
+        return;
+      }
+      else {
+        $timeout.cancel(voiceLengthTimeout);
+      }
       vm.buttonText = "按下 说话";
       vm.showHint = false;
       record.stopRecord();

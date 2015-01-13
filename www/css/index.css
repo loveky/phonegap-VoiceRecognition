@@ -44,6 +44,34 @@
   color: #ef4e3a;
 }
 
+.hint .record-progressbar {
+  position: absolute;
+  background-color: #66cc33;
+  height: 3px;
+  top: 140px;
+  -webkit-animation: record-progressbar 55s;
+  -moz-animation:    record-progressbar 55s;
+  -o-animation:      record-progressbar 55s;
+  animation:         record-progressbar 55s;
+}
+
+@-webkit-keyframes record-progressbar {
+  from   { left: 0%; right: 0%;}
+  to { left: 50%; right: 50%; }
+}
+@-moz-keyframes record-progressbar {
+  from   { left: 0%; right: 0%; }
+  to { left: 50%; right: 50%; }
+}
+@-o-keyframes record-progressbar {
+  from   { left: 0%; right: 0%; }
+  to { left: 50%; right: 50%; }
+}
+@keyframes record-progressbar {
+  from  { left: 0%; right: 0%; }
+  to { left: 50%; right: 50%; }
+}
+
 .description p {
   white-space: normal;
 }
